@@ -2,7 +2,7 @@
 import flatpickr from "flatpickr";
 // Importación adicional de estilos
 import "flatpickr/dist/flatpickr.min.css";
-import { Notify } from "notiflix/build/notiflix-notify-aio";
+import Notiflix from 'notiflix';
 
 const datetimePicker = document.querySelector('#datetime-picker');
 const dataDays = document.querySelector('span[data-days]');
@@ -23,14 +23,14 @@ const options = {
     const startDate = Date.now();
 
     if (selectedDate < startDate) {
-      Notify.failure('Please choose a date in the future');
+      Notiflix.Notify.failure('Please choose a date in the future');
       dataStartbtn.disabled = true;
       return;
     };
     
     dataStartbtn.disabled = false;
     let interval = null;
-
+  
     dataStartbtn.addEventListener('click', startTimer);
 
      function startTimer() {
@@ -41,8 +41,7 @@ const options = {
         const currentTime = Date.now();
 
         if (selectedDate < currentTime) {
-          Notify.failure('Too late for start button');
-          clearInterval(interval);
+                clearInterval(interval);
           datetimePicker.disabled = false;
           return;
         };
@@ -83,5 +82,4 @@ function convertMs(ms) {
     const seconds = Math.floor((((ms % day) % hour) % minute) / second);
   
     return { days, hours, minutes, seconds };
-  }
-  
+  };
