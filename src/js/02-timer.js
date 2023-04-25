@@ -41,7 +41,7 @@ const options = {
         const currentTime = Date.now();
 
         if (selectedDate < currentTime) {
-          Notify.failure('Too late for start');
+          Notify.failure('Too late for start button');
           clearInterval(interval);
           datetimePicker.disabled = false;
           return;
